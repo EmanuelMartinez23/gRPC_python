@@ -1,0 +1,92 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+option objc_class_prefix = "HLW";
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  // metodo para calcular la fecha del dia siguiente 
+  rpc NextDate (RequestDate) returns (ReplyDate){}
+  // metodo suma dias
+  rpc AddDaysDate (RequestAddDay) returns (ReplyDate){}
+  // Metodos para el servicio de disparos
+  rpc DimeCentroDiana (Empty) returns (CentroDianaResponse);
+  rpc DisparaCannon (DisparoRequest) returns (DisparoResponse);
+  rpc MejorDisparo (Empty) returns (MejorDisparoResponse);
+  
+}
+
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+
+// Data structure requestDate
+message RequestDate {
+  int32 day = 1;
+  int32 month = 2;
+  int32 year = 3;
+}
+
+// Data structure replyDate
+message ReplyDate {
+  int32 day = 1;
+  int32 month = 2;
+  int32 year = 3;
+}
+
+// data structure requestAddDay
+
+message RequestAddDay { 
+  int32 day = 1;
+  int32 month = 2;
+  int32 year = 3;
+  int32 dayToAdd = 4;
+}
+
+// data structure servicio de disparos
+message Empty {}
+//speed al centro de la diana
+message CentroDianaResponse {
+  double speed = 1; 
+}
+
+message DisparoRequest {
+  string username = 1;
+  double angle = 2;
+  double speed = 3;
+}
+
+message DisparoResponse {
+  double difference = 1;
+}
+message MejorDisparoResponse {
+  string username = 1;
+  double speed = 2;
+}
